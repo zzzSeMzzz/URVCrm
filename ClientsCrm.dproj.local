@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.072,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\UfrManageUsers.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.070,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.901,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.713,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.687,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\UfrHandbook.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.364,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.960,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.253,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.798,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.642,=C:\Users\admin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.432,=D:\projects\ClientsCrm\UserModel.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.610,C:\Users\admin\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\projects\ClientsCrm\LoginUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.685,=C:\Users\admin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.507,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\MainUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.791,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\TaskUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.236,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\UfrEditUser.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.102,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\UtilsUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.696,D:\projects\ClientsCrm\Unit1.pas=D:\projects\ClientsCrm\UfrEditTask.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.696,D:\projects\ClientsCrm\Unit1.dfm=D:\projects\ClientsCrm\UfrEditTask.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.666,=D:\projects\ClientsCrm\DataUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.671,=D:\projects\ClientsCrm\EncryptUnit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.428,D:\projects\ClientsCrm\LoginUnit.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.539,C:\Users\admin\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\projects\ClientsCrm\ClientsCrm.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.250,=D:\projects\ClientsCrm\UfrSett.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.610,C:\Users\admin\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\projects\ClientsCrm\LoginUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.072,D:\projects\ClientsCrm\Unit1.dfm=D:\projects\ClientsCrm\UfrManageUsers.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.507,D:\projects\ClientsCrm\Unit1.dfm=D:\projects\ClientsCrm\MainUnit.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.236,D:\projects\ClientsCrm\Unit1.dfm=D:\projects\ClientsCrm\UfrEditUser.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.710,=D:\projects\ClientsCrm\UfrLogin.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.687,D:\projects\ClientsCrm\Unit1.dfm=D:\projects\ClientsCrm\UfrHandbook.dfm</Transaction>
+    <Transaction>2018.07.05 07:47:19.963,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 07:48:11.431,D:\projects\ClientsCrm\UfrReportClient.pas=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 07:48:11.431,D:\projects\ClientsCrm\UfrReportClient.dfm=D:\projects\ClientsCrm\Unit1.dfm</Transaction>
+    <Transaction>2018.07.05 08:05:35.871,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 08:07:00.876,D:\projects\ClientsCrm\UfrReportClientR.pas=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 08:07:00.876,D:\projects\ClientsCrm\UfrReportClientR.dfm=D:\projects\ClientsCrm\Unit1.dfm</Transaction>
+    <Transaction>2018.07.05 11:21:22.030,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 11:22:31.257,D:\projects\ClientsCrm\UfrClientWorkReport.pas=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 11:22:31.257,D:\projects\ClientsCrm\UfrClientWorkReport.dfm=D:\projects\ClientsCrm\Unit1.dfm</Transaction>
+    <Transaction>2018.07.05 12:06:34.803,=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+    <Transaction>2018.07.05 12:07:25.191,D:\projects\ClientsCrm\UfrClientWorkReportR.dfm=D:\projects\ClientsCrm\Unit1.dfm</Transaction>
+    <Transaction>2018.07.05 12:07:25.191,D:\projects\ClientsCrm\UfrClientWorkReportR.pas=D:\projects\ClientsCrm\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

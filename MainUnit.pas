@@ -8,7 +8,8 @@ uses
   System.ImageList, Vcl.ImgList, acAlphaImageList, Vcl.Menus, UfrHandbook,
   DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
   GridsEh, DBAxisGridsEh, DBGridEh, DataUnit, UfrEditTask, TaskUnit, Data.DB,
-  MemDS, DBAccess, MyAccess, StrUtils, DbUtilsEh, UfrReportClient, UfrClientWorkReport;
+  MemDS, DBAccess, MyAccess, StrUtils, DbUtilsEh, UfrReportClient, UfrClientWorkReport,
+  UfrClientAnalitic, UfrAnaliticDep;
 
 type
   TfrMain = class(TForm)
@@ -37,6 +38,10 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     N4: TMenuItem;
+    N5: TMenuItem;
+    F1: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
 
     procedure CreateParams(var Params: TCreateParams); override;
     procedure btnAdminClick(Sender: TObject);
@@ -57,6 +62,8 @@ type
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure J1Click(Sender: TObject);
     procedure N2Click(Sender: TObject);
+    procedure F1Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
   private
     { Private declarations }
     function getTaskSql:string;
@@ -118,6 +125,13 @@ frReport:=TfrClientWorkReport.Create(Application);
 frReport.ShowModal;
 end;
 
+procedure TfrMain.N7Click(Sender: TObject);
+var frRep:TfrAnaliticDep;
+begin
+frRep:=TfrAnaliticDep.Create(Application);
+frRep.ShowModal;
+end;
+
 procedure TfrMain.CreateParams(var Params: TCreateParams);
 begin
   inherited;
@@ -127,7 +141,6 @@ end;
 procedure TfrMain.DBGridEh1ApplyFilter(Sender: TObject);
 var s : string;
 cond:string;
-i:integer;
 begin
 cond:='';
 s:='';
@@ -161,8 +174,6 @@ end;
 
 procedure TfrMain.DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
-var
-  IsOdd: Boolean;
 begin
 {IsOdd := Odd((Sender as TDBGridEh).DataSource.Dataset.RecNo);
 if IsOdd then
@@ -210,6 +221,13 @@ end;
   //DBGridEh1.DefaultApplySorting;
 end;
 
+procedure TfrMain.F1Click(Sender: TObject);
+var frRep:TfrClientAnalitic;
+begin
+frRep:=TfrClientAnalitic.Create(Application);
+frRep.ShowModal;
+end;
+
 procedure TfrMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 DBGridEh1.SaveColumnsLayoutIni(getmys+settFolder+'\'+'gridMain.ini', 'main',false);
@@ -221,6 +239,8 @@ var
 begin
 RestoreParams:=[grpColWidthsEh];
 DBGridEh1.RestoreGridLayoutIni(getmys+settFolder+'\'+'gridMain.ini','main', RestoreParams);
+n3.Visible:=False;
+n4.Visible:=false;
 end;
 
 procedure TfrMain.FormShow(Sender: TObject);

@@ -17,7 +17,11 @@ uses
   UfrReportClient in 'UfrReportClient.pas' {frReportClient},
   UfrReportClientR in 'UfrReportClientR.pas' {frReportClientR},
   UfrClientWorkReport in 'UfrClientWorkReport.pas' {frClientWorkReport},
-  UfrClientWorkReportR in 'UfrClientWorkReportR.pas' {frClientWorkReportR};
+  UfrClientWorkReportR in 'UfrClientWorkReportR.pas' {frClientWorkReportR},
+  UfrClientAnalitic in 'UfrClientAnalitic.pas' {frClientAnalitic},
+  UfrClientAnaliticR in 'UfrClientAnaliticR.pas' {frClientAnaliticR},
+  UfrAnaliticDep in 'UfrAnaliticDep.pas' {frAnaliticDep},
+  UfrAnaliticDepR in 'UfrAnaliticDepR.pas' {frAnaliticDepR};
 
 {$R *.res}
 
@@ -26,6 +30,10 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrLogin, frLogin);
+  //Application.CreateForm(TfrAnaliticDepR, frAnaliticDepR);
+  //Application.CreateForm(TfrAnaliticDep, frAnaliticDep);
+  //Application.CreateForm(TfrClientAnaliticR, frClientAnaliticR);
+  //Application.CreateForm(TfrClientAnaliic, frClientAnaliic);
   //Application.CreateForm(TfrClientWorkReportR, frClientWorkReportR);
   //Application.CreateForm(TfrClientWorkReport, frClientWorkReport);
   //Application.CreateForm(TfrReportClientR, frReportClientR);

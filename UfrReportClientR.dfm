@@ -116,6 +116,7 @@ object frReportClientR: TfrReportClientR
       end>
     GridLines = True
     ReadOnly = True
+    RowSelect = True
     TabOrder = 1
     ViewStyle = vsReport
     OnColumnClick = lvColumnClick

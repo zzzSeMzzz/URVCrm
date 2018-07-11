@@ -152,6 +152,22 @@
             <Form>frClientWorkReportR</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UfrClientAnalitic.pas">
+            <Form>frClientAnalitic</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrClientAnaliticR.pas">
+            <Form>frClientAnaliticR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAnaliticDep.pas">
+            <Form>frAnaliticDep</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAnaliticDepR.pas">
+            <Form>frAnaliticDepR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

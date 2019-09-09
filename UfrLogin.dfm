@@ -19,7 +19,7 @@ object frLogin: TfrLogin
   TextHeight = 13
   object sSpeedButton1: TsSpeedButton
     Left = 278
-    Top = 112
+    Top = 117
     Width = 33
     Height = 25
     OnClick = sSpeedButton1Click
@@ -2113,7 +2113,7 @@ object frLogin: TfrLogin
   end
   object OK: TButton
     Left = 317
-    Top = 112
+    Top = 117
     Width = 75
     Height = 25
     Caption = 'OK'

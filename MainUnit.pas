@@ -9,7 +9,8 @@ uses
   DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL,
   GridsEh, DBAxisGridsEh, DBGridEh, DataUnit, UfrEditTask, TaskUnit, Data.DB,
   MemDS, DBAccess, MyAccess, StrUtils, DbUtilsEh, UfrReportClient, UfrClientWorkReport,
-  UfrClientAnalitic, UfrAnaliticDep;
+  UfrClientAnalitic, UfrAnaliticDep, UfrAnaliticWork, UfrAnaliticUsers, UfrAbout,
+  Vcl.StdCtrls, Vcl.ExtCtrls, DateUtils;
 
 type
   TfrMain = class(TForm)
@@ -42,6 +43,16 @@ type
     F1: TMenuItem;
     N6: TMenuItem;
     N7: TMenuItem;
+    N8: TMenuItem;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    ToolButton10: TToolButton;
+    Panel1: TPanel;
+    dtFrom: TDateTimePicker;
+    Label1: TLabel;
+    dtTo: TDateTimePicker;
+    Label2: TLabel;
+    btnFilter: TButton;
 
     procedure CreateParams(var Params: TCreateParams); override;
     procedure btnAdminClick(Sender: TObject);
@@ -64,6 +75,10 @@ type
     procedure N2Click(Sender: TObject);
     procedure F1Click(Sender: TObject);
     procedure N7Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure ToolButton9Click(Sender: TObject);
+    procedure btnFilterClick(Sender: TObject);
   private
     { Private declarations }
     function getTaskSql:string;
@@ -79,12 +94,18 @@ const
 
 var
   frMain: TfrMain;
+  dtFS, dtTS:string;
 
 implementation
 
 {$R *.dfm}
 
 uses UfrManageUsers;
+
+function qs(s:string):string;
+begin
+  Result:=chr(39)+s+chr(39);
+end;
 
 function TfrMain.getTaskSql:string;
 begin
@@ -125,10 +146,25 @@ frReport:=TfrClientWorkReport.Create(Application);
 frReport.ShowModal;
 end;
 
+procedure TfrMain.N6Click(Sender: TObject);
+var frRep:TfrAnaliticWork;
+begin
+frRep:=TfrAnaliticWork.Create(Application);
+frRep.ShowModal;
+
+end;
+
 procedure TfrMain.N7Click(Sender: TObject);
 var frRep:TfrAnaliticDep;
 begin
 frRep:=TfrAnaliticDep.Create(Application);
+frRep.ShowModal;
+end;
+
+procedure TfrMain.N8Click(Sender: TObject);
+var frRep:TfrAnaliticUsers;
+begin
+frRep:=TfrAnaliticUsers.Create(Application);
 frRep.ShowModal;
 end;
 
@@ -237,6 +273,7 @@ procedure TfrMain.FormCreate(Sender: TObject);
 var
   RestoreParams:TDBGridEhRestoreParams;
 begin
+dtFrom.Date:=IncDay(now, -6);
 RestoreParams:=[grpColWidthsEh];
 DBGridEh1.RestoreGridLayoutIni(getmys+settFolder+'\'+'gridMain.ini','main', RestoreParams);
 n3.Visible:=False;
@@ -249,12 +286,22 @@ btnAdmin.Enabled:=CurrentUser.Role=urAdmin;
 n1.Enabled:=CurrentUser.Role=urAdmin;
 g1.Enabled:=CurrentUser.Role=urAdmin;
 
+dtFs:=FormatDateTime('yyyy-mm-dd', dtFrom.Date);
+dtTs:=FormatDateTime('yyyy-mm-dd', dtTo.Date);
+
+//ShowMessage(dtFS+' '+dtTS);
+
 if(CurrentUser.Role<>urAdmin) then
-begin
+begin                  //FormatDateTime
   dm.taskQ.SQL.Text:=dataUnit.taskSql
-  +' WHERE tasks.`user_id`='+inttostr(CurrentUser.id)
+  +' WHERE (tasks.`user_id`='+inttostr(CurrentUser.id)+')'
+  +' AND (tasks.`dt` BETWEEN '+qs(dtFS)+' AND '+qs(dtTS)+')'
   +' '+DataUnit.taskSqlGrop;
   //ShowMessage(dm.taskQ.SQL.Text);
+end else begin
+  dm.taskQ.SQL.Text:=dataUnit.taskSql
+  +'WHERE tasks.`dt` BETWEEN '+qs(dtFS)+' AND '+qs(dtTS)
+  +' '+DataUnit.taskSqlGrop;
 end;
 dm.tasksFilter.SQL.Text:=getTaskSql;
 dm.taskQ.Open;
@@ -316,6 +363,14 @@ begin
 if(dm.taskQ.Active)then dm.taskQ.Refresh;
 end;
 
+procedure TfrMain.ToolButton9Click(Sender: TObject);
+var
+frAbout:TfrAbout;
+begin
+  frAbout:=TfrAbout.Create(Application);
+  frAbout.ShowModal;
+end;
+
 procedure TfrMain.btnAddClick(Sender: TObject);
 var frTask:TfrEditTask;
 begin
@@ -331,6 +386,35 @@ var frManageU:TfrManageUsers;
 begin
 frManageU:=TfrManageUsers.Create(Application);
 frManageU.ShowModal;
+end;
+
+procedure TfrMain.btnFilterClick(Sender: TObject);
+begin
+Try
+  dtFs:=FormatDateTime('yyyy-mm-dd', dtFrom.Date);
+  dtTs:=FormatDateTime('yyyy-mm-dd', dtTo.Date)
+except
+  on E : Exception do begin
+      ShowMessage('Неверный формат даты и времени');
+      exit;
+    end;
+end;
+
+dm.taskQ.close;
+if(CurrentUser.Role<>urAdmin) then
+begin                  //FormatDateTime
+  dm.taskQ.SQL.Text:=dataUnit.taskSql
+  +' WHERE (tasks.`user_id`='+inttostr(CurrentUser.id)+')'
+  +' AND (tasks.`dt` BETWEEN '+qs(dtFS)+' AND '+qs(dtTS)+')'
+  +' '+DataUnit.taskSqlGrop;
+  //ShowMessage(dm.taskQ.SQL.Text);
+end else begin
+  dm.taskQ.SQL.Text:=dataUnit.taskSql
+  +'WHERE tasks.`dt` BETWEEN '+qs(dtFS)+' AND '+qs(dtTS)
+  +' '+DataUnit.taskSqlGrop;
+end;
+
+dm.taskQ.Open;
 end;
 
 end.

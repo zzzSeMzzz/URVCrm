@@ -103,6 +103,11 @@ begin
   exit;
 end else
  begin
+  if(q.FieldByName('fired').AsInteger=1) then begin
+    MessageDlg('¬ход заблокирован дл€ уволенных сотрудников', mtError, [mbok], 0);
+    q.Close;
+    exit;
+  end;
    user:=TUser.Create(q.FieldByName('id').AsInteger, q.FieldByName('login').AsString,
       q.FieldByName('pass').AsString, q.FieldByName('user_name').AsString,
       q.FieldByName('role').AsString);

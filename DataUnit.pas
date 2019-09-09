@@ -43,6 +43,23 @@ const
   'LEFT JOIN department ON (department.`id`=users.`id_dep`)';
   taskSqlGrop:String='GROUP BY tasks.id';
 
+  userWithFiredSql:string='select users.*,'+chr(13)+
+  'department.`name` as `dname`'+chr(13)  +
+  ', user_roles.`name` as `role`'+chr(13) +
+  'from users'+chr(13)+
+  'LEFT JOIN department ON (department.`id`=users.`id_dep`)'+chr(13)+
+  'LEFT JOIN user_roles ON (user_roles.`id`=users.`id_role`)'+chr(13) +
+  'GROUP BY users.id';
+
+  userWithoutFiredSql:string='select users.*,'+chr(13)+
+  'department.`name` as `dname`'+chr(13)  +
+  ', user_roles.`name` as `role`'+chr(13) +
+  'from users'+chr(13)+
+  'LEFT JOIN department ON (department.`id`=users.`id_dep`)'+chr(13)+
+  'LEFT JOIN user_roles ON (user_roles.`id`=users.`id_role`)'+chr(13) +
+  'WHERE users.`fired`<>1 '+chr(13)+
+  'GROUP BY users.id';
+
 var
   dm: Tdm;
   ini:TIniFile;

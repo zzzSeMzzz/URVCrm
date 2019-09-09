@@ -21,7 +21,12 @@ uses
   UfrClientAnalitic in 'UfrClientAnalitic.pas' {frClientAnalitic},
   UfrClientAnaliticR in 'UfrClientAnaliticR.pas' {frClientAnaliticR},
   UfrAnaliticDep in 'UfrAnaliticDep.pas' {frAnaliticDep},
-  UfrAnaliticDepR in 'UfrAnaliticDepR.pas' {frAnaliticDepR};
+  UfrAnaliticDepR in 'UfrAnaliticDepR.pas' {frAnaliticDepR},
+  UfrAnaliticWork in 'UfrAnaliticWork.pas' {frAnaliticWork},
+  UfrAnaliticWorkR in 'UfrAnaliticWorkR.pas' {frAnaliticWorkR},
+  UfrAnaliticUsers in 'UfrAnaliticUsers.pas' {frAnaliticUsers},
+  UfrAnaliticUsersR in 'UfrAnaliticUsersR.pas' {frAnaliticUsersR},
+  UfrAbout in 'UfrAbout.pas' {frAbout};
 
 {$R *.res}
 
@@ -30,6 +35,11 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrLogin, frLogin);
+  //Application.CreateForm(TfrAbout, frAbout);
+  //Application.CreateForm(TfrAnaliticUsersR, frAnaliticUsersR);
+  //Application.CreateForm(TfrAnaliticUsers, frAnaliticUsers);
+  //Application.CreateForm(TfrAnaliticWorkR, frAnaliticWorkR);
+  //Application.CreateForm(TfrAnaliticWork, frAnaliticWork);
   //Application.CreateForm(TfrAnaliticDepR, frAnaliticDepR);
   //Application.CreateForm(TfrAnaliticDep, frAnaliticDep);
   //Application.CreateForm(TfrClientAnaliticR, frClientAnaliticR);

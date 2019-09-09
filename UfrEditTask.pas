@@ -116,7 +116,7 @@ dtPicker.Date:=now;
 works:=TLockupValue.Create;
 clients:=TLockupValue.Create;
 
-q.sql.Text:='select * from clients';
+q.sql.Text:='select * from clients order by name asc';
 q.Open;
 for I := 0 to q.RecordCount-1 do
 begin
@@ -126,7 +126,7 @@ end;
 q.Close;
 cbClients.Items.Assign(clients.slValues);
 
-q.sql.Text:='select * from works';
+q.sql.Text:='select * from works order by name asc';
 q.Open;
 for I := 0 to q.RecordCount-1 do
 begin

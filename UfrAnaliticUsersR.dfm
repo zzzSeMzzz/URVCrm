@@ -1,51 +1,46 @@
-object frClientAnaliticR: TfrClientAnaliticR
+object frAnaliticUsersR: TfrAnaliticUsersR
+  AlignWithMargins = True
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
-  Caption = #1040#1085#1072#1083#1080#1090#1080#1082#1072' '#1082#1083#1080#1077#1085#1090#1099
-  ClientHeight = 550
-  ClientWidth = 719
+  Caption = #1040#1085#1072#1083#1080#1079' '#1089#1088#1072#1074#1085#1080#1090#1077#1083#1100#1085#1099#1081
+  ClientHeight = 498
+  ClientWidth = 709
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 14
   object lv: TListView
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 713
-    Height = 544
+    Left = 0
+    Top = 0
+    Width = 709
+    Height = 498
     Align = alClient
     Columns = <
       item
-        Caption = #1050#1083#1080#1077#1085#1090
+        Caption = #1057#1086#1090#1088#1091#1076#1085#1080#1082
         Width = 200
       end
       item
-        Width = 150
-      end
-      item
-        Width = 150
-      end
-      item
-        Caption = #1056#1072#1089#1093#1086#1078#1076#1077#1085#1080#1077', '#1084#1080#1085
-        Width = 120
-      end
-      item
-        Caption = #1056#1072#1089#1093#1086#1078#1076#1077#1085#1080#1077', '#1095#1072#1089
-        Width = 120
-      end
-      item
-        Caption = #1042' % '#1086#1090#1085#1086#1096#1077#1085#1080#1080' '#1091#1074#1077#1083#1080#1095#1077#1085#1080'/'#1059#1084#1077#1085#1100#1096#1077#1085#1080#1077',%'
+        Caption = #1042#1080#1076' '#1088#1072#1073#1086#1090
         Width = 250
+      end
+      item
+        Caption = #1042#1088#1077#1084#1103
+        Width = 60
+      end
+      item
+        Caption = #1057#1088#1077#1076#1085#1077#1077
+        Width = 90
       end>
     GridLines = True
     ReadOnly = True
@@ -53,16 +48,30 @@ object frClientAnaliticR: TfrClientAnaliticR
     PopupMenu = PopupMenu1
     TabOrder = 0
     ViewStyle = vsReport
-    OnColumnClick = lvColumnClick
-    OnCompare = lvCompare
     OnCustomDrawItem = lvCustomDrawItem
-    ExplicitLeft = 8
-    ExplicitTop = -2
+    OnCustomDrawSubItem = lvCustomDrawSubItem
+  end
+  object DBGridEh1: TDBGridEh
+    Left = 24
+    Top = 272
+    Width = 677
+    Height = 209
+    DataSource = MyDataSource1
+    DynProps = <>
+    TabOrder = 1
+    Visible = False
+    object RowDetailData: TRowDetailPanelControlEh
+    end
   end
   object q: TMyQuery
     Connection = dm.cn
-    Left = 592
-    Top = 376
+    Left = 304
+    Top = 120
+  end
+  object MyDataSource1: TMyDataSource
+    DataSet = q
+    Left = 504
+    Top = 168
   end
   object PopupMenu1: TPopupMenu
     Left = 120

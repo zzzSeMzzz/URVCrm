@@ -5,17 +5,23 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, MemDS, DBAccess, MyAccess, DataUnit,
-  UtilsUnit, Vcl.ComCtrls;
+  UtilsUnit, Vcl.ComCtrls, Vcl.Menus;
 
 type
   TfrClientAnaliticR = class(TForm)
     q: TMyQuery;
     lv: TListView;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    SaveDialog1: TSaveDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure lvCompare(Sender: TObject; Item1, Item2: TListItem; Data: Integer;
       var Compare: Integer);
     procedure lvColumnClick(Sender: TObject; Column: TListColumn);
+    procedure lvCustomDrawItem(Sender: TCustomListView; Item: TListItem;
+      State: TCustomDrawState; var DefaultDraw: Boolean);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
     procedure createSqlReport;
@@ -76,6 +82,19 @@ begin
   then Result:=2 else Result:=-1;
 end;
 
+procedure getTotalSum;
+var t1, t2, i:integer;
+begin
+t1:=0;
+t2:=0;
+  for I := 0  to lv.Items.Count-1 do
+  begin
+    t1:=t1+strtoint(lv.Items.Item[i].SubItems[0]);
+    t2:=t2+strtoint(lv.Items.Item[i].SubItems[1]);
+  end;
+  addItem('Итого', t1, t2);
+end;
+
 begin
 q.SQL.Text:=sqlReport+sqlGroup+sqlOrder;
 q.ParamByName('dt1').Value:=toMySqlDate(dt1);
@@ -134,7 +153,7 @@ end;
 
 q.Close;
 
-
+getTotalSum;
 end;
 
 procedure TfrClientAnaliticR.FormClose(Sender: TObject;
@@ -183,6 +202,24 @@ begin
     else  Compare:=CompareDoubleInc(f2, f1);
 end;
 
+end;
+
+procedure TfrClientAnaliticR.lvCustomDrawItem(Sender: TCustomListView;
+  Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
+begin
+if(Item.Caption='Итого') then
+begin
+    Sender.Canvas.Font.Style:= Sender.Canvas.Font.Style + [fsBold];
+    Sender.Canvas.Brush.Color:=cl3dLight;
+end else
+if item.Index mod 2=0 then  Sender.Canvas.Brush.Color:=$00EFEFEF;
+end;
+
+procedure TfrClientAnaliticR.N1Click(Sender: TObject);
+begin
+if not SaveDialog1.Execute(handle) then  exit;
+
+UtilsUnit.saveListViewToExel(lv, saveDialog1.FileName);
 end;
 
 end.

@@ -168,6 +168,26 @@
             <Form>frAnaliticDepR</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UfrAnaliticWork.pas">
+            <Form>frAnaliticWork</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAnaliticWorkR.pas">
+            <Form>frAnaliticWorkR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAnaliticUsers.pas">
+            <Form>frAnaliticUsers</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAnaliticUsersR.pas">
+            <Form>frAnaliticUsersR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfrAbout.pas">
+            <Form>frAbout</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

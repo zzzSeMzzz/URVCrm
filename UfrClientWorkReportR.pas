@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DataUnit, DBGridEhGrouping, ToolCtrlsEh,
   DBGridEhToolCtrls, DynVarsEh, Vcl.ComCtrls, EhLibVCL, GridsEh, DBAxisGridsEh,
-  DBGridEh, Data.DB, DBAccess, MyAccess, MemDS, UtilsUnit;
+  DBGridEh, Data.DB, DBAccess, MyAccess, MemDS, UtilsUnit, Vcl.Menus;
 
 type
   TfrClientWorkReportR = class(TForm)
@@ -14,6 +14,9 @@ type
     ds: TMyDataSource;
     DBGridEh1: TDBGridEh;
     lv: TListView;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    SaveDialog1: TSaveDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -22,10 +25,14 @@ type
       var Compare: Integer);
     procedure lvCustomDrawSubItem(Sender: TCustomListView; Item: TListItem;
       SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
+    procedure lvCustomDrawItem(Sender: TCustomListView; Item: TListItem;
+      State: TCustomDrawState; var DefaultDraw: Boolean);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
     procedure createSqlReport;
     procedure fillReport;
+    procedure getTotalSum;
     function getReportItemByPair(pair:TLockupPair):TListItem;
 
   public
@@ -99,7 +106,7 @@ end;
 procedure TfrClientWorkReportR.fillReport;
 var i:integer;
 
-function addColumn(caption:string; width:integer):TListColumn;
+function addColumn(caption:string; const width:integer=150):TListColumn;
 begin
   result:=lv.Columns.Add;
   Result.Caption:=caption;
@@ -107,9 +114,9 @@ begin
 end;
 
 begin
-addColumn('Клиенты', 120);
-for I := 0 to works.slValues.Count-1 do addColumn(works.slValues.Strings[i], 100);
-addColumn('Итого', 100);
+addColumn('Клиенты', 200);
+for I := 0 to works.slValues.Count-1 do addColumn(works.slValues.Strings[i]);
+addColumn('Итого');
 
 for I := 0 to clients.count-1 do
   getReportItemByPair(clients.getPair(i));
@@ -133,13 +140,14 @@ end;
 
 procedure TfrClientWorkReportR.FormShow(Sender: TObject);
 begin
-Caption:='Отчет по клиента-видам работ';
+Caption:='Отчет по клиентам-видам работ';
 
 //ShowMessage('selected clients count='+inttostr(clients.count)+' works count='+IntToStr(works.count));
 createSqlReport;
 //ShowMessage(q.SQL.Text);
 q.Open;
 fillReport;
+getTotalSum;
 end;
 
 
@@ -185,6 +193,25 @@ item.SubItems[item.SubItems.Count-1]:=inttostr(sumTm);
 Result:=item;
 end;
 
+procedure TfrClientWorkReportR.getTotalSum;
+var i, j, sum:integer;
+    item:TListItem;
+begin
+item:=lv.Items.Add;
+item.Caption:='Итого';
+//showmessage(inttostr(works.count));
+//showmessage(inttostr(lv.Items.Count));
+ for I := 0 to works.count do begin
+    sum:=0;
+    for j := 0 to lv.Items.Count-2 do begin
+      //ShowMessage(lv.Items[j].Caption);
+      sum:=sum+strtoint(lv.Items[j].SubItems[i]);
+    end;
+    item.SubItems.Add(inttostr(sum));
+ end;
+
+end;
+
 procedure TfrClientWorkReportR.lvColumnClick(Sender: TObject;
   Column: TListColumn);
 begin
@@ -220,6 +247,17 @@ end;
 
 end;
 
+procedure TfrClientWorkReportR.lvCustomDrawItem(Sender: TCustomListView;
+  Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
+begin
+if(Item.Caption='Итого') then
+begin
+    Sender.Canvas.Font.Style:= Sender.Canvas.Font.Style + [fsBold];
+    Sender.Canvas.Brush.Color:=cl3dLight;
+end else
+if item.Index mod 2=0 then  Sender.Canvas.Brush.Color:=$00EFEFEF;
+end;
+
 procedure TfrClientWorkReportR.lvCustomDrawSubItem(Sender: TCustomListView;
   Item: TListItem; SubItem: Integer; State: TCustomDrawState;
   var DefaultDraw: Boolean);
@@ -229,6 +267,13 @@ begin
     Sender.Canvas.Font.Style:= Sender.Canvas.Font.Style + [fsBold];
     Sender.Canvas.Brush.Color:=cl3dLight;
 end;
+end;
+
+procedure TfrClientWorkReportR.N1Click(Sender: TObject);
+begin
+if not SaveDialog1.Execute(handle) then  exit;
+
+UtilsUnit.saveListViewToExel(lv, saveDialog1.FileName);
 end;
 
 end.

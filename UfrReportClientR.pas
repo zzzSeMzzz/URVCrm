@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DBGridEhGrouping, ToolCtrlsEh,
   DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh, DataUnit,
-  Data.DB, DBAccess, MyAccess, MemDS, UtilsUnit, Vcl.ComCtrls;
+  Data.DB, DBAccess, MyAccess, MemDS, UtilsUnit, Vcl.ComCtrls, Vcl.Menus;
 
 type
   TfrReportClientR = class(TForm)
@@ -14,12 +14,16 @@ type
     q: TMyQuery;
     ds: TMyDataSource;
     lv: TListView;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    SaveDialog1: TSaveDialog;
     procedure FormShow(Sender: TObject);
     procedure lvCustomDrawItem(Sender: TCustomListView; Item: TListItem;
       State: TCustomDrawState; var DefaultDraw: Boolean);
     procedure lvCompare(Sender: TObject; Item1, Item2: TListItem; Data: Integer;
       var Compare: Integer);
     procedure lvColumnClick(Sender: TObject; Column: TListColumn);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
     procedure createSqlReport;
@@ -27,6 +31,7 @@ type
     { Public declarations }
     idDep, nameDep:string;
     dt1, dt2:TDate;
+    userId:string;
   end;
 
 const
@@ -55,6 +60,14 @@ implementation
 procedure TfrReportClientR.createSqlReport;
 var slUserIds:TStringList;
 begin
+if(idDep='-2') then
+begin
+ q.SQL.Text:=sqlReport+chr(13)+
+        'AND (tasks.user_id in('+userId+'))'
+        +sqlGroup+sqlOrder;
+     q.ParamByName('dt1').Value:=toMySqlDate(dt1);
+     q.ParamByName('dt2').Value:=toMySqlDate(dt2);
+end else
 if(idDep='-1') then
 begin
   q.SQL.Text:=sqlReport+sqlGroup+sqlOrder;
@@ -198,7 +211,14 @@ if(Item.Caption='Итого:') then
 begin
     Sender.Canvas.Font.Style:= Sender.Canvas.Font.Style + [fsBold];
     Sender.Canvas.Brush.Color:=cl3dLight;
+end else if item.Index mod 2=0 then  Sender.Canvas.Brush.Color:=$00EFEFEF;
 end;
+
+procedure TfrReportClientR.N1Click(Sender: TObject);
+begin
+if not SaveDialog1.Execute(handle) then  exit;
+
+UtilsUnit.saveListViewToExel(lv, saveDialog1.FileName);
 end;
 
 end.

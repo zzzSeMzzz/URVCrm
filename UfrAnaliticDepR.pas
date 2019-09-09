@@ -5,12 +5,15 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, MemDS, DBAccess, MyAccess, DataUnit,
-  Vcl.ComCtrls, UtilsUnit;
+  Vcl.ComCtrls, UtilsUnit, Vcl.Menus;
 
 type
   TfrAnaliticDepR = class(TForm)
     q: TMyQuery;
     lv: TListView;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    SaveDialog1: TSaveDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure lvColumnClick(Sender: TObject; Column: TListColumn);
@@ -18,6 +21,7 @@ type
       var Compare: Integer);
     procedure lvCustomDrawItem(Sender: TCustomListView; Item: TListItem;
       State: TCustomDrawState; var DefaultDraw: Boolean);
+    procedure N1Click(Sender: TObject);
   private
     { Private declarations }
     procedure createSqlReport;
@@ -209,7 +213,15 @@ if(Item.Caption='Итоги') then
 begin
     Sender.Canvas.Font.Style:= Sender.Canvas.Font.Style + [fsBold];
     Sender.Canvas.Brush.Color:=cl3dLight;
+end else if item.Index mod 2=0 then  Sender.Canvas.Brush.Color:=$00EFEFEF;
+
 end;
+
+procedure TfrAnaliticDepR.N1Click(Sender: TObject);
+begin
+if not SaveDialog1.Execute(handle) then  exit;
+
+UtilsUnit.saveListViewToExel(lv, saveDialog1.FileName);
 end;
 
 end.

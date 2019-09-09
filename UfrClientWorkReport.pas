@@ -86,7 +86,8 @@ selWorks:=TLockupValue.Create;
 
   frRep.clients.Assign(selClients);
   frRep.works.Assign(selWorks);
-
+  selClients.Free;
+  selWorks.Free;
   frRep.ShowModal;
 end;
 

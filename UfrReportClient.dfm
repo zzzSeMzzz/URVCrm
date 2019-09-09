@@ -3,7 +3,7 @@ object frReportClient: TfrReportClient
   Top = 0
   BorderStyle = bsDialog
   Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1086#1090#1095#1077#1090#1072
-  ClientHeight = 149
+  ClientHeight = 190
   ClientWidth = 363
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,13 +17,6 @@ object frReportClient: TfrReportClient
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 14
-  object Label1: TLabel
-    Left = 8
-    Top = 64
-    Width = 89
-    Height = 14
-    Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
-  end
   object Label2: TLabel
     Left = 8
     Top = 8
@@ -40,7 +33,7 @@ object frReportClient: TfrReportClient
   end
   object Button1: TButton
     Left = 280
-    Top = 120
+    Top = 159
     Width = 75
     Height = 25
     Caption = 'OK'
@@ -74,9 +67,37 @@ object frReportClient: TfrReportClient
     Time = 43286.332057719900000000
     TabOrder = 3
   end
+  object rbDep: TRadioButton
+    Left = 8
+    Top = 56
+    Width = 113
+    Height = 17
+    Caption = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
+    Checked = True
+    TabOrder = 4
+    TabStop = True
+    OnClick = rbDepClick
+  end
+  object RadioButton1: TRadioButton
+    Left = 8
+    Top = 108
+    Width = 201
+    Height = 17
+    Caption = #1055#1086' '#1086#1090#1076#1077#1083#1100#1085#1099#1084' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1072#1084
+    TabOrder = 5
+    OnClick = RadioButton1Click
+  end
+  object cbUser: TComboBox
+    Left = 8
+    Top = 131
+    Width = 347
+    Height = 22
+    Style = csDropDownList
+    Enabled = False
+    TabOrder = 6
+  end
   object q: TMyQuery
     Connection = dm.cn
-    Left = 176
-    Top = 104
+    Left = 264
   end
 end

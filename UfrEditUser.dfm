@@ -3,7 +3,7 @@ object frEditUser: TfrEditUser
   Top = 0
   BorderStyle = bsDialog
   Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103
-  ClientHeight = 293
+  ClientHeight = 317
   ClientWidth = 316
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -92,7 +92,7 @@ object frEditUser: TfrEditUser
   end
   object Button1: TButton
     Left = 233
-    Top = 264
+    Top = 288
     Width = 75
     Height = 25
     Caption = 'OK'
@@ -102,13 +102,21 @@ object frEditUser: TfrEditUser
   end
   object Button2: TButton
     Left = 152
-    Top = 264
+    Top = 288
     Width = 75
     Height = 25
     Cancel = True
     Caption = #1054#1090#1084#1077#1085#1072
     TabOrder = 6
     OnClick = Button2Click
+  end
+  object chFired: TCheckBox
+    Left = 8
+    Top = 256
+    Width = 97
+    Height = 17
+    Caption = #1059#1074#1086#1083#1077#1085
+    TabOrder = 7
   end
   object q: TMyQuery
     Connection = dm.cn

@@ -5,7 +5,7 @@ object frEditTask: TfrEditTask
   BorderStyle = bsSingle
   Caption = #1047#1072#1076#1072#1095#1072
   ClientHeight = 390
-  ClientWidth = 294
+  ClientWidth = 293
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -71,7 +71,6 @@ object frEditTask: TfrEditTask
     Top = 76
     Width = 257
     Height = 22
-    Style = csDropDownList
     TabOrder = 1
     OnKeyDown = FormKeyDown
   end
@@ -80,7 +79,6 @@ object frEditTask: TfrEditTask
     Top = 132
     Width = 257
     Height = 22
-    Style = csDropDownList
     TabOrder = 2
     OnKeyDown = FormKeyDown
   end

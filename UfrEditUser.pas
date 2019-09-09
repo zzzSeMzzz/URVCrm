@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, MemDS,
-  DBAccess, MyAccess,
+  DBAccess, MyAccess,  System.Math,
   DataUnit;
 
 type
@@ -23,6 +23,7 @@ type
     Button1: TButton;
     Button2: TButton;
     q: TMyQuery;
+    chFired: TCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -66,13 +67,14 @@ else idDep:=departments[ComboBox2.ItemIndex];
 
 if(idUser=-1) then begin
 q.SQL.Text:='insert into `users` '+
-  '(`id_role`, `login`, `pass`, `user_name`, `id_dep`) '+
+  '(`id_role`, `login`, `pass`, `user_name`, `id_dep`, `fired`) '+
   'values('
   +qs(idRole)
   +', '+qs(edLogin.Text)
   +', '+qs(edPass.Text)
   +', '+qs(edFio.Text)
   +', '+qs(idDep)
+  +', '+inttostr(ifthen(chFired.Checked, 1,0))
   +')';
 q.Execute;
 end else
@@ -82,7 +84,8 @@ begin
     '`login`='+qs(edLogin.Text)+', '+
     '`pass`='+qs(edPass.Text)+', '+
     '`id_role`='+qs(idRole)+', '+
-    '`id_dep`='+qs(idDep)+
+    '`id_dep`='+qs(idDep)+ ', '+
+    '`fired`='+inttostr(ifthen(chFired.Checked, 1,0)) +
     ' WHERE `id`='+inttostr(iduser);
    q.Execute
 end;
@@ -143,6 +146,7 @@ if(idUser<>-1) then
     edPass.Text:=q.FieldByName('pass').AsString;
     ComboBox1.ItemIndex:=roles.IndexOf(q.FieldByName('id_role').AsString);
     ComboBox2.ItemIndex:=departments.IndexOf(q.FieldByName('id_dep').AsString);
+    chFired.Checked:=q.FieldByName('fired').AsInteger = 1;
     q.Close;
   end;
 end;

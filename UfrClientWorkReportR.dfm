@@ -41,15 +41,13 @@ object frClientWorkReportR: TfrClientWorkReportR
     GridLines = True
     ReadOnly = True
     RowSelect = True
+    PopupMenu = PopupMenu1
     TabOrder = 1
     ViewStyle = vsReport
     OnColumnClick = lvColumnClick
     OnCompare = lvCompare
+    OnCustomDrawItem = lvCustomDrawItem
     OnCustomDrawSubItem = lvCustomDrawSubItem
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 670
-    ExplicitHeight = 225
   end
   object q: TMyQuery
     Connection = dm.cn
@@ -60,5 +58,19 @@ object frClientWorkReportR: TfrClientWorkReportR
     DataSet = q
     Left = 640
     Top = 440
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 120
+    Top = 88
+    object N1: TMenuItem
+      Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' '#1101#1082#1089#1077#1083#1100
+      OnClick = N1Click
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'xls'
+    Filter = #1069#1082#1089#1077#1083#1100' '#1092#1072#1081#1083'|*.xls'
+    Left = 200
+    Top = 104
   end
 end
